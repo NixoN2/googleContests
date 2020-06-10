@@ -1,0 +1,67 @@
+#include <iostream>
+#include <set>
+using namespace std;
+
+const int  mxN = 100;
+int n, m[mxN][mxN];
+
+void solve()
+{
+	cin >> n;
+	for (int i = 0; i < n; ++i)
+	{
+		for (int j = 0; j < n; ++j)
+		{
+			cin >> m[i][j];
+		}
+	}
+	int k = 0;
+	for (int i = 0; i < n; ++i)
+	{
+		k += m[i][i];
+	}
+	int  r = 0;
+	for (int i = 0; i < n; ++i)
+	{
+		set<int> s;
+		bool dup = 0;
+		for (int j = 0; j < n; ++j)
+		{
+			if (s.find(m[i][j]) != s.end())
+				dup = 1;
+			s.insert(m[i][j]);
+
+		}
+		if (dup)
+			++r;
+	 }
+	int  c = 0;
+	for (int i = 0; i < n; ++i)
+	{
+		set<int> s;
+		bool dup = 0;
+		for (int j = 0; j < n; ++j)
+		{
+			if (s.find(m[j][i]) != s.end())
+				dup = 1;
+				s.insert(m[j][i]);
+
+		}
+		if (dup)
+			++c;
+	}
+	cout << k << " " << r << " " << c << "\n";
+}
+
+int main()
+{
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	for (int i = 1; i <= t; ++i)
+	{
+		cout << "Case #" << i << ": ";
+		solve();
+  	}
+}
