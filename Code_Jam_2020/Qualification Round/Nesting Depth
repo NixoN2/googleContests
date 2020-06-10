@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+void solve()
+{
+	string s;
+	cin >> s;
+	int dep = 0;
+	string ans;
+	for (char c : s)
+	{
+		int newdep = c - '0';
+		while (newdep > dep)
+		{
+			++dep;
+			ans += '(';
+		}
+		while (newdep < dep)
+		{
+			--dep;
+			ans += ')';
+		}
+		ans += c;
+	}
+	while (dep > 0)
+	{
+		--dep;
+		ans += ')';
+	}
+	cout << ans << "\n";
+}
+
+int main()
+{
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	for (int i = 1; i <= t; ++i)
+	{
+		std::cout << "Case #" << i << ": ";
+		solve();
+	}
+}
